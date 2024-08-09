@@ -3,10 +3,18 @@ module.exports = {
   content: ['./src/**/*.{html,js}'],
   theme: {
     colors: {
-      'gunmetal': '#293632',
+      white: '#ffffff',
+      gunmetal: {
+        100: '#006340',
+        200: '#2d473e',
+        300: '#293632',
+      },
       gray: {
-        100: '#DBDBDB',
-      }
+        100: '#dbdbdb',
+        200: '#adadad',
+        300: '#808080',
+        400: '#f5f5f5',
+      },
     },
   },
 }
