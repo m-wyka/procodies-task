@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { object, string } from "yup";
+import { useForm } from "vee-validate";
+import ValidateTextField from "~/components/form/ValidateTextField.vue";
+
 const formData = reactive({
   firstName: '',
   lastName: '',
@@ -9,93 +13,88 @@ const formData = reactive({
   email: '',
 });
 
-const onSubmit = () => {
+const validationSchema = object({
+  firstName: string().required().min(3).max(255),
+  lastName: string().required().min(3).max(255),
+  street: string().required().min(3).max(255),
+  postalCode: string().required().min(3).max(20),
+  city: string().required().min(3).max(255),
+  phoneNumber: string().required().min(3).max(255),
+  email: string().required().email(),
+});
+
+const { handleSubmit } = useForm({ validationSchema });
+
+const handleFormSubmit = handleSubmit(() => {
   console.log(formData);
-};
+});
+
 </script>
 
 <template>
   <div class="rounded-[20px] border border-gray-100 px-[26px] py-6">
-    <form @submit.prevent="onSubmit">
+    <form @submit.prevent="handleFormSubmit">
       <div class="grid gap-6">
         <h4 class="text-center">
           Enter details
         </h4>
 
         <div class="grid sm:grid-cols-2 gap-4">
-          <label for="firstName" class="sr-only">First name</label>
-          <input
+          <ValidateTextField
             v-model="formData.firstName"
-            id="firstName"
-            class="text-field col-span-1"
-            type="text"
             name="firstName"
+            label="First name"
             placeholder="First name"
           />
 
-          <label for="lastName" class="sr-only">Last name</label>
-          <input
+          <ValidateTextField
             v-model="formData.lastName"
-            id="lastName"
-            class="text-field col-span-1"
-            type="text"
             name="lastName"
+            label="Last name"
             placeholder="Last name"
           />
 
-          <label for="street" class="sr-only">Street</label>
-          <input
+          <ValidateTextField
             v-model="formData.street"
-            id="street"
-            class="text-field col-span-full"
-            type="text"
             name="street"
+            label="Street"
             placeholder="Street"
+            class="col-span-full"
           />
 
-          <label for="postalCode" class="sr-only">Postal code</label>
-          <input
+          <ValidateTextField
             v-model="formData.postalCode"
-            id="postalCode"
-            class="text-field col-span-1"
-            type="text"
             name="postalCode"
-            placeholder="Postal code"
+            label="Postal Code"
+            placeholder="Postal Code"
           />
 
-          <label for="city" class="sr-only">City</label>
-          <input
+          <ValidateTextField
             v-model="formData.city"
-            id="city"
-            class="text-field col-span-1"
-            type="text"
             name="city"
+            label="City"
             placeholder="City"
           />
 
-          <label for="phoneNumber" class="sr-only">Phone number</label>
-          <input
+          <ValidateTextField
             v-model="formData.phoneNumber"
-            id="phoneNumber"
-            class="text-field col-span-full"
-            type="tel"
             name="phoneNumber"
+            label="Phone number"
             placeholder="Phone number"
+            class="col-span-full"
           />
 
-          <label for="email" class="sr-only">E-mail</label>
-          <input
+          <ValidateTextField
             v-model="formData.email"
-            id="email"
-            class="text-field col-span-full"
-            type="email"
             name="email"
+            label="E-mail"
             placeholder="E-mail"
+            class="col-span-full"
           />
         </div>
 
         <Btn type="submit">Proceed to payment</Btn>
-        
+
         <div class="flex gap-4 justify-center">
           <img src="@/assets/images/mcafee.png" alt="McAfee SECURE">
           <img src="@/assets/images/truste.png" alt="TRUSTe VERIFIED">
