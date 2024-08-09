@@ -2,7 +2,7 @@
 defineProps<{
   image: string;
   imageAlt: string;
-  ltr?: boolean;
+  ltr?: boolean; /* if true, the text is on the left and the image is on the right */
 }>();
 </script>
 

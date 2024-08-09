@@ -16,16 +16,16 @@ const data = ref([
 </script>
 
 <template>
-<section class="bg-gray-400">
-  <div class="grid md:grid-cols-3 gap-8 max-w-[1232px] mx-auto px-4 py-6">
-    <div
-      v-for="(item, index) in data"
-      :key="index"
-      class="grid gap-1 content-start"
-    >
-      <h5 class="text-xs font-semibold">{{ item.title }}</h5>
-      <p class="text-[10px] leading-4">{{ item.content }}</p>
+  <section class="bg-gray-400">
+    <div class="grid md:grid-cols-3 gap-8 max-w-[1232px] mx-auto px-4 py-6">
+      <div
+        v-for="(item, index) in data"
+        :key="index"
+        class="grid gap-1 content-start"
+      >
+        <h5 class="text-xs font-semibold">{{ item.title }}</h5>
+        <p class="text-[10px] leading-4">{{ item.content }}</p>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 </template>
